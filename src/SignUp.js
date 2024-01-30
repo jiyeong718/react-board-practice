@@ -46,7 +46,7 @@ function SignUp(){
     navigate('/login');
   };
   function postSignupData(){
-    const url = '/api/article/post';
+    const url = 'https://crud.hoydev.site/api/account/signup';
     axios.post(url,{
       signupId: userId,
       signupPw: userPw,
@@ -57,16 +57,17 @@ function SignUp(){
         console.log(response.data);
       })
       .catch(function (error){
-        console.log('alert: ', error.response);
+        console.log(error);
       })
   }
+
   return(
     <>
       <h1>회원 가입</h1>
 
       <div>
         <input id="id" type="text"
-               placeholder="4자~10자 사이, 소문자 영문 +_숫자 조합"
+               placeholder="4자~10자 사이, 소문자 영문 + 숫자 조합"
                value={userId}
                onInput={handleId}
                onKeyDown={handleKeyDown}/>
