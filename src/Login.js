@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 function Login() {
   const [userId, setUserId] = useState("");
   const [userPw, setUserPw] = useState("");
@@ -27,6 +28,11 @@ function Login() {
       alert("공백은 입력할 수 없습니다.");
     }
   }
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate('/');
+  };
+
   function postLoginData(){
     const url = 'https://crud.hoydev.site/api/account/login';
     axios.post(url,{
@@ -34,7 +40,9 @@ function Login() {
       loginPassword: userPw
     })
       .then(function (response){
-        console.log(response.data);
+        handleNavigate();
+
+        console.log("로그인 성공");
       })
       .catch(function (error){
         alert(error.response.data.validation.loginPassword);
