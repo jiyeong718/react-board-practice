@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 
 export const handlers = [
-  rest.get('list', (req, res, ctx) => {
+  rest.get('/list', (req, res, ctx) => {
     const limit = req.url.searchParams.get('limit')
 
     let list = [
