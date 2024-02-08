@@ -26,14 +26,15 @@ const Write = () => {
   };
 
   function handleWrite(){
-    const url = '/api/article';
+    const url = 'https://crud.hoydev.site/api/article/post';
     axios.post(url,{
       title: title,
       content: content
     })
       .then(function (response){
-        console.log(response.data);
         handleNavigate();
+
+        console.log("작성 내용을 저장합니다.");
       })
       .catch(function (error){
         console.log(error);
