@@ -1,8 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import axios from "axios";
-import {Link} from "react-router-dom";
-import { rest } from 'msw';
-import { server } from '../src/mocks/server';
+// import axios from "axios";
 
 const BoardList = () => {
   const [boardList, setBoardList] = useState([]);
@@ -30,15 +27,13 @@ const BoardList = () => {
   const [list, setList] = useState ([]);
 
   useEffect(()=>{
-
-    loadProducts();
-
+    loadList();
   },[]);
 
-  const loadProducts = async () => {
+  const loadList = async () => {
     setLoading(true);
 
-    const response = await (await fetch ("/list?limit=10")).json();
+    const response = await (await fetch ("/list?limit=2")).json();
 
     setList (response.data);
 
@@ -58,19 +53,13 @@ const BoardList = () => {
       <div>
         <a href="/write">글쓰기</a>
 
-        {loading && (
-          <div>Loading...</div>
-        )}
+        {loading && <div>Loading...</div>}
 
-        {list.map (list => (
-          <div className="listContainer">
-              <div className="title">
-                {list.title}
-              </div>
-              <div className="contents">
-                {list.content}
-              </div>
-            </div>
+        {list.map (item => (
+          <div className="listContainer" key={item.id}>
+            <div className="title">{item.title}</div>
+            <div className="contents">{item.content}</div>
+          </div>
         ))}
       </div>
 
